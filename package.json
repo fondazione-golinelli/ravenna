@@ -1,0 +1,12 @@
+{
+  "name": "the-lost-treasure-part2",
+  "version": "1.0.0",
+  "description": "Landing page for The Lost Treasure Part 2 game levels",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

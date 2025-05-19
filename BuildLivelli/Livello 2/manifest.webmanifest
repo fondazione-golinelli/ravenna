@@ -1,0 +1,12 @@
+{
+  "name": "Livello Teodorico",
+  "short_name": "Livello Teodorico",
+  "id": "com.example.gamename",
+  "description": "",
+  "orientation": "any",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "black",
+  "categories": ["games", "entertainment"],
+  "icons": []
+}
