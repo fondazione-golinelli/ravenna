@@ -170,13 +170,15 @@ body::before {
 .level-authors {
     display: none;
     width: 90%;
-    font-family: 'Minecraft', sans-serif;
-    font-size: 9px;
-    line-height: 1.2;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 11px;
+    line-height: 1.3;
     color: #fff;
     text-align: center;
     margin-top: 5px;
     padding: 0 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .level.active .level-authors {

@@ -1,0 +1,36 @@
+/* Queste sono le modifiche da apportare al file styles.css */
+
+/* Modificare la dimensione del font principale degli autori (già fatto) */
+.level-authors {
+    display: none;
+    width: 90%;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 11px;  /* Aumentato da 9px a 11px */
+    line-height: 1.3;
+    color: #fff;
+    text-align: center;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+/* Modificare la dimensione del font degli autori nella media query per tablet */
+@media (max-width: 1000px) {
+    /* ... altre regole ... */
+    
+    .level-authors {
+        font-size: 10px;  /* Aumentato da 8px a 10px */
+    }
+    
+    /* ... altre regole ... */
+}
+
+/* Modificare la dimensione del font degli autori nella media query per mobile */
+@media (max-width: 576px) {
+    /* ... altre regole ... */
+    
+    .level-authors {
+        font-size: 9px;  /* Aumentato da 8px a 9px */
+    }
+    
+    /* ... altre regole ... */
+}
