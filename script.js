@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Populate authors list for each level
+    populateAuthorsLists();
+    
     const levels = document.querySelectorAll('.level');
     let currentIndex = 0;
     
     // Set the first level as active by default
     levels[currentIndex].classList.add('active');
+    
+    // Show authors for the active level
+    updateAuthorsDisplay(currentIndex + 1);
     
     // Handle keyboard navigation (left/right arrows and B button for selection)
     document.addEventListener('keydown', function(event) {
@@ -112,12 +118,14 @@ document.addEventListener('DOMContentLoaded', function() {
         levels[currentIndex].classList.remove('active');
         currentIndex = (currentIndex - 1 + levels.length) % levels.length;
         levels[currentIndex].classList.add('active');
+        updateAuthorsDisplay(currentIndex + 1);
     }
     
     function navigateRight() {
         levels[currentIndex].classList.remove('active');
         currentIndex = (currentIndex + 1) % levels.length;
         levels[currentIndex].classList.add('active');
+        updateAuthorsDisplay(currentIndex + 1);
     }
     
     function selectLevel() {
@@ -205,8 +213,56 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = index;
             levels[currentIndex].classList.add('active');
             
+            // Update authors display
+            updateAuthorsDisplay(currentIndex + 1);
+            
             // Select the level
             selectLevel();
         });
     });
+
+    // Function to populate authors lists
+    function populateAuthorsLists() {
+        // Loop through each level (1-5)
+        for (let i = 1; i <= 5; i++) {
+            const levelKey = `Livello ${i}`;
+            const authorsContainer = document.getElementById(`authors-level-${i}`);
+            
+            // Check if we have authors data for this level
+            if (authorsData[levelKey] && authorsContainer) {
+                // Aggiungi il titolo "Autori"
+                const authorsTitle = document.createElement('div');
+                authorsTitle.className = 'authors-title';
+                authorsTitle.textContent = 'Autori';
+                authorsContainer.appendChild(authorsTitle);
+                
+                // Create a list element
+                const authorsList = document.createElement('ul');
+                
+                // Add each author as a list item
+                authorsData[levelKey].forEach(author => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = author;
+                    authorsList.appendChild(listItem);
+                });
+                
+                // Add the list to the container
+                authorsContainer.appendChild(authorsList);
+            }
+        }
+    }
+    
+    // Function to update the authors display for the active level
+    function updateAuthorsDisplay(levelNumber) {
+        // Nascondi tutti gli elenchi degli autori
+        document.querySelectorAll('.level-authors').forEach(authorsList => {
+            authorsList.style.display = 'none';
+        });
+        
+        // Mostra l'elenco degli autori per il livello attivo
+        const activeAuthorsList = document.getElementById(`authors-level-${levelNumber}`);
+        if (activeAuthorsList) {
+            activeAuthorsList.style.display = 'block';
+        }
+    }
 });

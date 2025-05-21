@@ -7,12 +7,16 @@
 body {
     font-family: 'Minecraft', 'Press Start 2P', 'Courier New', monospace;
     color: #fff;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     position: relative;
+    padding: 0;
+    margin: 0;
+    padding-top: 0;
 }
 
 body::before {
@@ -34,12 +38,15 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
+    margin: 0 auto;
+    margin-top: -250px;
 }
 
 .title-container {
-    margin-bottom: 40px;
+    margin: 5px 0 15px 0;
     text-align: center;
+    padding: 0 10px;
 }
 
 .title-image {
@@ -51,8 +58,8 @@ body::before {
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 15px;
+    margin: 0 0 50px 0;
 }
 
 .level {
@@ -67,7 +74,7 @@ body::before {
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .level-content {
@@ -76,15 +83,17 @@ body::before {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     z-index: 2;
+    padding-bottom: 10px;
 }
 
 .level-image-container {
     width: 160px;
     height: 160px;
     margin-top: 15px;
+    margin-bottom: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,7 +115,7 @@ body::before {
     font-family: 'Minecraft', 'Press Start 2P', monospace;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     text-shadow: 2px 2px 4px #000;
     color: #fff;
     letter-spacing: 1px;
@@ -120,6 +129,11 @@ body::before {
     border-color: #ffcc00;
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.7);
     z-index: 10;
+    position: relative;
+    height: auto;
+    min-height: 240px;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
 }
 
 .level.active .level-image-container {
@@ -138,7 +152,7 @@ body::before {
     border-radius: 10px;
     text-align: center;
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 /* Retro pixel styling for levels */
@@ -148,27 +162,232 @@ body::before {
 .level-4 { background-color: rgba(255, 255, 100, 0.3); }
 .level-5 { background-color: rgba(255, 100, 255, 0.3); }
 
+/* Level authors */
+.level-authors {
+    display: none;
+    width: 90%;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 9px;
+    line-height: 1.2;
+    color: #fff;
+    text-align: center;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+.level.active .level-authors {
+    display: block;
+    height: auto;
+    overflow: visible;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ffcc00;
+}
+
+.level-authors ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.level-authors li {
+    padding: 1px 0;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Rimossi stili scrollbar */
+
+.popup-image-container {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 2px solid #555;
+}
+
+.popup-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.authors-title {
+    font-family: 'Minecraft', 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #ffcc00;
+    margin: 2px 0;
+    text-align: center;
+    text-shadow: 1px 1px 2px #000;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    padding: 1px 0;
+}
+
+.authors-list {
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 5px;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.authors-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.authors-list li {
+    padding: 3px 0;
+    text-align: center;
+}
+
+/* Custom scrollbar for authors list */
+.authors-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.authors-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.authors-list::-webkit-scrollbar-thumb {
+    background: #ffcc00;
+    border-radius: 4px;
+}
+
+.authors-list::-webkit-scrollbar-thumb:hover {
+    background: #ffd633;
+}
+
 /* Responsive design */
 @media (max-width: 1000px) {
     .levels-container {
         flex-wrap: wrap;
+        gap: 15px;
     }
     
     .level {
-        width: 150px;
-        height: 150px;
+        width: calc(50% - 20px);
+        max-width: 200px;
+        height: auto;
+        aspect-ratio: 1/1.2;
+    }
+    
+    .level-image-container {
+        width: 80%;
+        height: 70%;
+        margin: 10px auto;
+    }
+    
+    .level-number {
+        font-size: 14px;
+        margin: 5px 0;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .level {
-        width: 120px;
-        height: 120px;
+        width: calc(50% - 15px);
+        max-width: 160px;
     }
     
-    .level h2 {
-        font-size: 14px;
+    .level-number {
+        font-size: 12px;
+    }
+    
+    .controller-info {
+        font-size: 12px;
+        padding: 10px 15px;
     }
 }
 
 /* Fonts are now loaded via HTML link tags */
+
+/* Logos section */
+.logos-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 0 10px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 auto;
+    padding: 20px 10px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.logo {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border: 1px solid #eeeeee;
+}
+
+.logo:hover {
+    background-color: #f9f9f9;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    max-height: 100%;
+    max-width: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(0%) brightness(1);
+    transition: all 0.3s ease;
+}
+
+.logo:hover img {
+    filter: grayscale(0%) brightness(1);
+}
+
+@media (max-width: 768px) {
+    .logos-container {
+        gap: 10px;
+        padding: 15px 5px;
+    }
+    
+    .logo {
+        height: 50px;
+        padding: 0 8px;
+    }
+    
+    .logo img {
+        max-width: 100px;
+    }
+    
+    .title-container {
+        margin: 20px 0;
+    }
+    
+    .levels-container {
+        margin-bottom: 20px;
+    }
+}
